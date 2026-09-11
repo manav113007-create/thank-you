@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>The virtual party — Manav's birthday</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { ink: "#f5f3ee", gold: "#e3c16f", pink: "#f2a6c4", cyan: "#5eead4" },
+        fontFamily: {
+          display: ["Bricolage Grotesque", "Inter", "sans-serif"],
+          body: ["Inter", "sans-serif"],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="font-body min-h-[100svh] relative">
+
+  <div class="grain"></div>
+  <div class="glow-field" aria-hidden="true">
+    <div class="glow-blob glow-blob--cyan"></div>
+    <div class="glow-blob glow-blob--gold"></div>
+  </div>
+
+  <header class="top-nav">
+    <a href="thankyou.html" data-ripple aria-label="Back to thank you card"
+      class="glass rounded-full w-11 h-11 flex items-center justify-center text-white/80">←</a>
+    <span class="text-xs tracking-wide text-white/40">03 / 03</span>
+  </header>
+
+  <button data-sound-toggle data-ripple aria-label="Turn music on"
+    class="sound-toggle glass" type="button">🔇</button>
+  <audio data-bgm loop preload="none" src="Lights(chosic.com).mp3"></audio>
+
+  <main class="relative z-10 px-5 pt-28 pb-24 max-w-3xl mx-auto">
+
+    <!-- Party hero -->
+    <section class="text-center mb-16">
+      <h1 data-entrance data-delay="0" class="reveal font-display font-extrabold leading-tight
+          text-[clamp(2rem,8vw,3.4rem)]">
+        WELCOME TO<br /><span class="text-cyan">THE PARTY</span> 🎉
+        <img src="krishnaji.png" alt="Birthday sticker"
+          data-entrance data-delay="350"
+          class="reveal w-32 h-32 sm:w-38 sm:h-40 md:w-48 md:h-48
+                 rotate-6 object-contain select-none mx-auto mt-6" />
+      </h1>
+      <p data-entrance data-delay="300" class="reveal text-white/60 mt-5">
+        No dress code. No invitations. No leaving early.
+      </p>
+    </section>
+
+    <!-- Scrapbook -->
+    <section class="mb-16">
+      <h2 class="font-display text-lg text-white/70 mb-4 reveal">a few moments from the day</h2>
+      <div class="columns-2 md:columns-3 gap-3 [column-fill:_balance]">
+        <a class="photo-card block mb-3 break-inside-avoid" href="assets/images/placeholder-1.svg" data-ripple>
+          <img src="me.jpg" alt="Add your own birthday photo here" loading="lazy" />
+        </a>
+        <a class="photo-card block mb-3 break-inside-avoid" href="assets/images/placeholder-2.svg" data-ripple>
+          <img src="party.jpg" alt="Add your own birthday photo here" loading="lazy" />
+        </a>
+        <a class="photo-card block mb-3 break-inside-avoid" href="assets/images/placeholder-3.svg" data-ripple>
+          <img src="malpua.jpg" alt="Add your own birthday photo here" loading="lazy" />
+        </a>
+        <a class="photo-card block mb-3 break-inside-avoid" href="assets/images/placeholder-4.svg" data-ripple>
+          <img src="sweets.jpg" alt="Add your own birthday photo here" loading="lazy" />
+        </a>
+        <a class="photo-card block mb-3 break-inside-avoid" href="assets/images/placeholder-5.svg" data-ripple>
+          <img src="party2.jpg" alt="Add your own birthday photo here" loading="lazy" />
+        </a>
+        <a class="photo-card block mb-3 break-inside-avoid" href="assets/images/placeholder-6.svg" data-ripple>
+          <img src="party1.jpg" alt="Add your own birthday photo here" loading="lazy" />
+        </a>
+      </div>
+      <p class="text-xs text-white/35 mt-3">Take you party, eat as much you want enjoy as much as! this the time 😋+✨ <code class="text-white/50">assets/images/</code> with your own.</p>
+    </section>
+
+    <!-- Party stats -->
+    <section class="glass rounded-3xl p-6 mb-10 reveal">
+      <h2 class="font-display text-sm tracking-wide text-white/50 mb-4">VIRTUAL PARTY STATS</h2>
+      <ul class="grid grid-cols-2 gap-y-3 text-lg">
+        <li class="flex items-center gap-2">🍕 Pizza</li>
+        <li class="font-display font-bold text-gold" data-count="pizza">03</li>
+        <li class="flex items-center gap-2">🍰 Cake</li>
+        <li class="font-display font-bold text-pink" data-count="cake">02</li>
+        <li class="flex items-center gap-2">🥤 Drinks</li>
+        <li class="font-display font-bold text-cyan" data-count="drinks">04</li>
+        <li class="flex items-center gap-2">😂 Laughs</li>
+        <li class="font-display font-bold text-white">∞</li>
+      </ul>
+    </section>
+
+    <!-- Food interactions -->
+    <section class="text-center mb-8">
+      <p class="text-white/50 text-sm mb-4">tap something</p>
+      <div class="flex items-center justify-center gap-4">
+        <button data-food="pizza" data-ripple aria-label="Add a pizza slice" class="food-btn glass">🍕</button>
+        <button data-food="cake" data-ripple aria-label="Take a slice of cake" class="food-btn glass">🍰</button>
+        <button data-food="drinks" data-ripple aria-label="Grab a drink" class="food-btn glass">🥤</button>
+      </div>
+      <p data-birthdaybot aria-live="polite"
+        class="mt-6 text-sm text-white/70 max-w-xs mx-auto opacity-0 transition-opacity duration-500"></p>
+    </section>
+
+    <!-- Gift section -->
+    <section class="text-center mt-24">
+      <h2 class="font-display font-bold text-[clamp(1.5rem,6vw,2.2rem)] leading-tight">
+        WAIT...<br />YOU MADE IT THIS FAR? 👀
+      </h2>
+      <p class="text-white/60 mt-4 max-w-sm mx-auto">
+        Your presence was already a gift. But if you insist —
+      </p>
+
+      <button data-reveal-gift data-ripple class="btn btn-primary magnetic mt-7">🎁 Reveal The Gift</button>
+
+      <div class="qr-wrap glass rounded-3xl p-7 mt-8 max-w-xs mx-auto">
+        <img src="QR.png" alt="QR code to send a birthday gift"
+          class="w-full rounded-2xl" loading="lazy" />
+        <p class="font-display font-semibold mt-4">SCAN TO SEND A BIRTHDAY GIFT 🎁</p>
+        <p class="text-xs text-white/40 mt-2">No pressure. Genuinely.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/party.js"></script>
+</body>
+</html>

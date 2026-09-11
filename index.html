@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Manav is leveling up 🎂</title>
+<meta name="description" content="A little thank-you and a small virtual party — made for the people who remembered." />
+
+<!-- Open Graph so the WhatsApp share preview looks intentional -->
+<meta property="og:title" content="Manav is leveling up 🎂" />
+<meta property="og:description" content="Thank you for the birthday wishes. I made something for you." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="style.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: "#f5f3ee",
+          gold: "#e3c16f",
+          pink: "#f2a6c4",
+          cyan: "#5eead4",
+        },
+        fontFamily: {
+          display: ["Bricolage Grotesque", "Inter", "sans-serif"],
+          body: ["Inter", "sans-serif"],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="font-body min-h-[100svh] relative">
+
+  <div class="grain"></div>
+  <div class="glow-field" aria-hidden="true">
+    <div class="glow-blob glow-blob--gold"></div>
+    <div class="glow-blob glow-blob--pink"></div>
+    <div class="glow-blob glow-blob--cyan"></div>
+  </div>
+
+  <button data-sound-toggle data-ripple aria-label="Turn music on"
+    class="sound-toggle glass" type="button">🔇</button>
+  <audio data-bgm loop preload="none" src="wake-up-sid-iktara-bollym4ucom-mp3pm_8UJaLd1q.mp3"></audio>
+
+  <main class="relative z-10 min-h-[100svh] flex flex-col items-center justify-center px-6 py-16 text-center">
+
+    <p data-entrance data-delay="0" class="reveal text-sm tracking-wide text-white/50 mb-5 font-body">
+      Today is my birthday.
+    </p>
+
+ <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+  <div>
+    <h1 data-entrance data-delay="200" class="reveal font-display font-extrabold leading-[0.95] text-white
+        text-[clamp(2.6rem,11vw,5.5rem)]">
+      ONE MORE<br />YEAR.
+    </h1>
+    <p data-entrance data-delay="500" class="reveal font-display font-semibold leading-tight
+        text-[clamp(1.6rem,7vw,3rem)] mt-3">
+      <span class="text-gold">11th Sept. 2007</span>
+    </p>
+  </div>
+  <img src="sticker1.png" alt="Birthday sticker"
+    data-entrance data-delay="350"
+    class="reveal w-24 h-24 sm:w-36 sm:h-36 md:w-44 md:h-44
+           rotate-6 object-contain select-none" />
+</div>
+
+    <p data-entrance data-delay="800" class="reveal text-white/60 text-base md:text-lg max-w-md mt-7 leading-relaxed">
+      Thank you for making today a little more special.
+      But before you leave — I made something for you.
+    </p>
+
+    <p> 
+
+    </p>
+
+    <div data-entrance data-delay="1100" class="reveal flex flex-col sm:flex-row gap-3.5 mt-10 w-full max-w-sm sm:max-w-none justify-center">
+      <a href="thankyou.html" data-ripple
+        class="btn btn-primary magnetic w-full sm:w-auto">💌 Thank You Card</a> <br>
+      <a href="party.html" data-ripple
+        class="btn btn-ghost magnetic w-full sm:w-auto gap-5 ">🎉 Enter The Party</a>
+    </div>
+
+    <button data-levelup-card data-ripple type="button"
+  class="level-card glass w-full max-w-xs mt-14 rounded-3xl p-5 text-left relative overflow-hidden">
+  <span class="text-[0.7rem] tracking-[0.15em] text-white/40">🎮 NEW ACHIEVEMENT</span>
+  <p data-levelup-text class="font-display font-semibold text-lg text-gold mt-2 leading-snug">
+    Tap to unlock →
+  </p>
+
+</button>
+<BR><br>
+
+<div section="closing">
+  <h3 class="font-display font-family: Inter color: beige">Closing Thoughts</h3>
+  <p class="text-white/60 text-base md:text-lg max-w-md mt-3 leading-relaxed">
+    I hope you enjoyed this little birthday experience. Your wishes and presence mean a lot to me. Thank you for being a part of my journey.
+  </p>
+</div>
+ <br>
+
+<div section="notice">
+  <p class="text-white/60 text-sm max-w-md mt-3 leading-relaxed">
+    Note: For the best experience use updated browsers. And if possible use desktop some feature are exclusive to it 😎✨✨
+  </p>
+
+</div>
+  </main>
+   
+   <footer class="relative z-10 text-center text-white/50 text-sm mt-16 mb-6">
+    <p>Made with ❤️ by Manav</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

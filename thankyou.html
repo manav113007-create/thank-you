@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>A thank you — Manav's birthday</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { ink: "#f5f3ee", gold: "#e3c16f", pink: "#f2a6c4", cyan: "#5eead4" },
+        fontFamily: {
+          display: ["Bricolage Grotesque", "Inter", "sans-serif"],
+          body: ["Inter", "sans-serif"],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="font-body min-h-[100svh] relative">
+
+  <div class="grain"></div>
+  <div class="glow-field" aria-hidden="true">
+    <div class="glow-blob glow-blob--pink"></div>
+    <div class="glow-blob glow-blob--gold"></div>
+  </div>
+
+  <header class="top-nav">
+    <a href="index.html" data-ripple aria-label="Back to home"
+      class="glass rounded-full w-11 h-11 flex items-center justify-center text-white/80">←</a>
+    <span class="text-xs tracking-wide text-white/40">02 / 03</span>
+  </header>
+
+  <button data-sound-toggle data-ripple aria-label="Turn music on"
+    class="sound-toggle glass" type="button">🔇</button>
+  <audio data-bgm loop preload="none" src="Lights(chosic.com).mp3"></audio>
+
+  <main class="relative z-10 px-5 pt-28 pb-20">
+
+    <div class="max-w-lg mx-auto text-center mb-14">
+      <h1 data-entrance data-delay="0" class="reveal font-display font-extrabold leading-tight
+          text-[clamp(1.8rem,7vw,2.8rem)]">
+        A little something<br /><span class="text-pink">for everyone</span><br />who remembered.
+      </h1>
+      <img src="sticker2.png" alt="Birthday sticker"
+        data-entrance data-delay="350"
+        class="reveal w-24 h-24 sm:w-38 sm:h-38 md:w-44 md:h-44
+               rotate-6 object-contain select-none mx-auto mt-6" />
+      <p data-entrance data-delay="300" class="reveal text-white/50 mt-5 text-sm">
+        Scroll to open it ↓
+      </p>
+    </div>
+
+    <section class="card-stage">
+      <div class="card-panel glass">
+
+        <p class="card-line">To everyone who wished me —</p>
+
+        <p class="card-line">to everyone who took a moment out of their day to send a message, make a call, or just think of me —</p>
+
+        <p class="card-line">to the ones who called instead of texting, because it felt more like you —</p>
+
+        <p class="card-line">to the ones who sent the same three-word message and somehow it still meant something —</p>
+
+        <p class="card-line">to the group chats, the stories, the tags, the memes made just for the occasion —</p>
+
+        <p class="card-line">none of it went unnoticed. I read every one of them, more than once.</p>
+
+        <p class="card-line card-line--final">THANK YOU ❤️</p>
+
+        <p class="card-line">You genuinely made today feel like something worth celebrating.</p>
+
+      </div>
+    </section>
+
+    <div class="text-center mt-16">
+      <p class="text-white/60 mb-6">Ready for the fun part?</p>
+      <a href="party.html" data-ripple class="btn btn-primary magnetic">🎉 Enter The Party</a>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

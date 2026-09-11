@@ -1,0 +1,430 @@
+
+
+:root {
+  --bg: #0a0b0f;
+  --bg-soft: #12141c;
+  --bg-softer: #191c26;
+  --ink: #f5f3ee;
+  --ink-dim: #a8a6b3;
+  --ink-faint: #6b6975;
+  --gold: #e3c16f;
+  --pink: #f2a6c4;
+  --cyan: #5eead4;
+  --card: rgba(255, 255, 255, 0.045);
+  --card-border: rgba(255, 255, 255, 0.09);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+  --font-display: "Bricolage Grotesque", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ---------- Grain texture (cheap: one repeating SVG, no JS) ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Ambient glow blobs (background decoration) ---------- */
+.glow-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.glow-blob--gold {
+  background: var(--gold);
+  width: 40vmax;
+  height: 40vmax;
+  top: -10vmax;
+  left: -10vmax;
+  animation: drift-a 22s var(--ease-soft) infinite alternate;
+}
+
+.glow-blob--pink {
+  background: var(--pink);
+  width: 32vmax;
+  height: 32vmax;
+  bottom: -8vmax;
+  right: -8vmax;
+  animation: drift-b 26s var(--ease-soft) infinite alternate;
+}
+
+.glow-blob--cyan {
+  background: var(--cyan);
+  width: 26vmax;
+  height: 26vmax;
+  top: 40%;
+  left: 60%;
+  opacity: 0.18;
+  animation: drift-c 30s var(--ease-soft) infinite alternate;
+}
+
+@keyframes drift-a {
+  to { transform: translate(8vmax, 6vmax) scale(1.1); }
+}
+@keyframes drift-b {
+  to { transform: translate(-6vmax, -8vmax) scale(1.05); }
+}
+@keyframes drift-c {
+  to { transform: translate(-10vmax, 4vmax) scale(0.95); }
+}
+
+/* ---------- Cursor glow (desktop / fine pointer only) ---------- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 420px;
+  margin-left: -210px;
+  margin-top: -210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(227, 193, 111, 0.10) 0%, rgba(227, 193, 111, 0) 70%);
+  pointer-events: none;
+  z-index: 2;
+  transform: translate(var(--x, -50vw), var(--y, -50vh));
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.cursor-glow.is-active {
+  opacity: 1;
+}
+
+/* ---------- Reveal-on-load / reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Glass card ---------- */
+.glass {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.1rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s ease;
+  touch-action: manipulation;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), #c99b45);
+  color: #17130a;
+  box-shadow: 0 8px 30px rgba(227, 193, 111, 0.25);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--card-border);
+  color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(227, 193, 111, 0.35);
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+  .magnetic {
+    transition: transform 0.2s var(--ease-out);
+  }
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* ---------- Sound control ---------- */
+.sound-toggle {
+  position: fixed;
+  bottom: 1.1rem;
+  right: 1.1rem;
+  z-index: 40;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+/* ---------- Nav dots (party/thankyou back links) ---------- */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.1rem;
+}
+
+/* ---------- Thank-you card ---------- */
+.card-stage {
+  position: relative;
+  z-index: 2;
+}
+
+.card-panel {
+  width: min(92vw, 640px);
+  margin: 0 auto;
+  border-radius: 28px;
+  padding: 2.1rem 1.6rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .card-panel {
+    width: min(80vw, 720px);
+    padding: 3.5rem 3rem;
+  }
+}
+
+.card-line {
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  font-size: clamp(1.15rem, 4.2vw, 1.7rem);
+  line-height: 1.7;
+  color: var(--ink-dim);
+  margin-bottom: 1.4rem;
+}
+
+.card-line.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  color: var(--ink);
+}
+
+.card-line--final {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  color: var(--gold);
+}
+
+/* ---------- Party: scrapbook photo cards ---------- */
+.photo-card {
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(135deg, var(--bg-softer), var(--bg-soft));
+  border: 1px solid var(--card-border);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-card.is-expanded {
+  transform: scale(1.04);
+  box-shadow: var(--shadow);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .photo-card:hover {
+    transform: rotate(var(--tilt, -1deg)) scale(1.03);
+    box-shadow: var(--shadow);
+  }
+}
+
+/* ---------- Food buttons ---------- */
+.food-btn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  transition: transform 0.18s var(--ease-out);
+  touch-action: manipulation;
+}
+
+.food-btn:active {
+  transform: scale(0.88);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .food-btn:hover {
+    transform: translateY(-4px) scale(1.06);
+  }
+}
+
+.food-pop {
+  position: absolute;
+  left: 50%;
+  top: -0.6rem;
+  transform: translate(-50%, 0);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.food-pop.pop {
+  animation: pop-up 0.9s var(--ease-out) forwards;
+}
+
+@keyframes pop-up {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -1.6rem); }
+}
+
+/* ---------- QR reveal ---------- */
+.qr-wrap {
+  filter: blur(14px);
+  opacity: 0.35;
+  transform: scale(0.94);
+  transition: filter 0.9s var(--ease-out), opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+
+.qr-wrap.is-revealed {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- Confetti ---------- */
+.confetti-piece {
+  position: fixed;
+  top: -5vh;
+  z-index: 50;
+  pointer-events: none;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(var(--spin, 480deg));
+    opacity: 0.9;
+  }
+}
+
+/* ---------- Utility ---------- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .glow-blob {
+    animation: none !important;
+  }
+}
+.level-card {
+  transition: transform 0.2s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.level-card [data-levelup-text] {
+  transition: opacity 0.15s ease;
+}
+.level-card--pop {
+  animation: level-pop 0.4s var(--ease-out);
+}
+@keyframes level-pop {
+  0% { transform: scale(1); box-shadow: none; }
+  40% { transform: scale(1.03); box-shadow: 0 0 0 1px var(--gold), 0 10px 30px rgba(227, 193, 111, 0.25); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .level-card:hover { transform: translateY(-2px); }
+}
